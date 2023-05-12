@@ -1,0 +1,65 @@
+{
+    "BipedalAgent": {
+        "checkpoints": [
+            {
+                "steps": 13999870,
+                "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-13999870.onnx",
+                "reward": 506.9954569498698,
+                "creation_time": 1682884034.206435,
+                "auxillary_file_paths": [
+                    "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-13999870.pt"
+                ]
+            },
+            {
+                "steps": 14499931,
+                "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-14499931.onnx",
+                "reward": 512.0184138371394,
+                "creation_time": 1682884911.7219539,
+                "auxillary_file_paths": [
+                    "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-14499931.pt"
+                ]
+            },
+            {
+                "steps": 14999798,
+                "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-14999798.onnx",
+                "reward": 522.3814187818958,
+                "creation_time": 1682885785.5053012,
+                "auxillary_file_paths": [
+                    "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-14999798.pt"
+                ]
+            },
+            {
+                "steps": 15499821,
+                "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-15499821.onnx",
+                "reward": 526.4431681913488,
+                "creation_time": 1682886659.7505548,
+                "auxillary_file_paths": [
+                    "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-15499821.pt"
+                ]
+            },
+            {
+                "steps": 15852059,
+                "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-15852059.onnx",
+                "reward": 545.3307006835937,
+                "creation_time": 1682887282.4891748,
+                "auxillary_file_paths": [
+                    "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-15852059.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 15852059,
+            "file_path": "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent.onnx",
+            "reward": 545.3307006835937,
+            "creation_time": 1682887282.4891748,
+            "auxillary_file_paths": [
+                "results\\FYP_3x128_phaseMirHalfAvgNoEstepToLiftFeet\\BipedalAgent\\BipedalAgent-15852059.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
