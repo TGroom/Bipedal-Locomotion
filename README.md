@@ -2,23 +2,47 @@
 # Humanoid Walking and Stair Traversal
 
 ## Setting up the Code
+Follow the installation guide (https://github.com/Unity-Technologies/ml-agents/blob/release_19_docs/docs/Installation.md). Making sure to use the correct versions and using a python virtual environment.
 
+Open CMD with admin privileges.
 
+	cd "Users\.. ..\Desktop"
+
+To activate the environment, execute python-envs\sample-env\Scripts\activate (From the desktop).
+
+To deactivate the environment execute deactivate.
+
+Open the Unity project through Unity Hub using Unity 2021.3.9f1.
 
 ## Training
+Open the Project file in Unity through Unity Hub.
 
-mlagents-learn config/bipedalagent_config.yaml --run-id=TestRun --time-scale 10 --force
+Run the following command from within the bipedal-locomotion folder in a new CMD terminal:
 
+	mlagents-learn config/bipedalagent_config.yaml --run-id=TestRun --time-scale 10 --force
+	
+Push play in the Unity editor to begin training.
+
+Once training has finished, drag and drop the trained policy (onnx file in /results/<run-identifier>/<behavior_name>.onnx) into the “/TFModels/” folder in Unity.
+
+Drag the <behavior_name>.onnx file from the Project window of the Editor to the Model placeholder in the Agent inspector window.
 
 ## Visualising
-### Within Unity
 
 ### Tensor Board
+To check run:
 
-tensorboard --logdir results
+	tensorboard --logdir results
+
+And go to http://localhost:6006. To see the results from the final two models go to: http://localhost:6006/?darkMode=false&runColorGroup=regex%3AFINAL#timeseries
 
 ### PCA Visualisation using Blender
-## Changes made from example (CODE THAT WAS ACTUALLY WRITTEN)
+Install Blender 3.3.0.
+Double click to run the GeneratePCAImages.blend file.
+To render an image, push the play button at the top of the code editor window.
+To change the PCA loadings, copy and paste new PCA loadings into the PCA1, PCA2 and PCA3 variables from the output of the "PCA Graphing.py" script.
+
+## TODO: Changes made from example
 ## Results from Testing
 
 20/01/2023 - BipedalStabilityTest1.
@@ -150,143 +174,17 @@ tensorboard --logdir results
 
 08/03/2023 - BipedalImprovingRealism4. Result: Human like walking. Marginally gaining higher rewards
 
-19/04/2023 - FYP_Feet.
-
-19/04/2023 - FYP_NoFeet. [Removed feet for this run]
-
-19/04/2023 - FYP_2x128
-20/04/2023 - FYP_3x128
-
-FYP_NoFeet\BipedalAgent
-610.1
-
-FYP_3x64\BipedalAgent
-241.6
-
-FYP_3x512\BipedalAgent
-615.1
-
-FYP_3x128\BipedalAgent
-632
-
-FYP_2x512\BipedalAgent
-588.7
-
-FYP_2x256\BipedalAgent
-547.9
-
-FYP_2x128\BipedalAgent
-201.6
-
-
-
-	Reduced maximum joint force from 1000 to 100 and maximum joint strength setting in joint driver from 2 to 1.
-	Increased lower bound on domain randomisation of friction from 0.1 to 0.6.
+* Reduced maximum joint force from 1000 to 100 and maximum joint strength setting in joint driver from 2 to 1.
+* Increased lower bound on domain randomisation of friction from 0.1 to 0.6.
 
 23/04/2023 - FYP_3x128 Results: faster training than 3x128 & higher overall reward
 
-	DONE: Do not randomise start orientation!
-	TODO: Double check movement direction and orientation rewards are in the correct directions!!!! ---- Not Needed
-	DONE: Realistic Rigid Body Masses (Hip mass was 0.5) m1 was 38, m2 was 2, m3 was 0.5
-	
-
-	Rewards for foot force were added back in place of upper leg forward / backward reward
-	Reward for velocity changed to z and x directions
-	Reward for minimising body angular velocity and acceleration added
-	Some reward weights changed, force weight from 0.002 to 0.005, at weight from -1 to -2
-	Added random start orientation back in to hopefully improve symmetry of walking gait
-
-
-------------- Folder Format -------------
-
-Run (Tuning the Reward Function) Due: 27/02/2023
-	Experimenting to get human like walking
-	[X] Remove step in the way of goal
-	[X] Replace the target with a velocity vector (Target rotation & Target speed)
-	[X] Remove target cube position sensor input
-	[X] Remove conditionalReverse() ???
-	
----- Human Like Walking Agent Done ----
-
-Realism Due: 06/03/2023
-	[X] Improving the realism of the physics engine
-	[X] Improving the realism of the environment by adding friction forces
-	[X] Adding domain randomisation to the ground
-
-	1.1 [X] Create stairs and steps generation code
-
-	2.1 [-] Create a script to evaluate reliability of the model
-		[X] External perturbation code created
-
-	2.2 [ ] Write code which outputs foot movement data that can be plotted
-
-	3.1 [#] Adding a PD joint controller
-	3.2 [ ] Adding domain randomisation to the joint actuators
-
-	4.1 Removing Sensors
-
-	If this works:
-	[ ] Tidy up code
-
----- Realistic Human Like Walking Agent Done ----
-
-Experimenting with the setup:
-	[ ] TEST: With vs without feet
-	[ ] TEST: Changing the number of parrallel agents with: 1, 2, 4, 8, 16, (32)
-	[ ] TEST: Changing the number of time steps the agent can take (episode length increased) from 500 to 5000
-
-AblationStudy Due: 13/03/2023
-	[ ] TEST: Removing sensors so that only the minimal and realistic sensors are required whilst still being able to walk like a human
-
----- Sim-To-Real Applicable Agent ----
-
-[X] ADD STEPS AND STAIRS
-
-ANNshape Due: 22/04/2023
-	Use 9 Different ANN shapes and investigate the differences in the learned behaviour
-
-
-Idea: Allow it to vary the stepping time as an output so that it can hone in on the correct gait step rate
-Idea: foot off ground height specific reward
-
-Idea: do not peanalise contact with the ground when it falls [x]
-Idea: peanalise multiple steps (ground contacts) per cycle
-
-
-Auto Startup:
-"C:\Program Files\Unity\Hub\Editor\2021.3.9f1\Editor\Unity.exe" -projectPath "C:\Users\Thomas Groom\Desktop\Blind-Bipedal-Locomotion\Bipedal Stair Traversal" -batchmode
-
-
-DEPRECATED --------
-
-1st Phase - Get it to take steps like a human
-TODO:
-	[/] - Replicate simulation results from report by Oregon State University
-	[/] - Improve physics simulation realism - what does this mean?
-		[ ] - Realistic max joint force parameters etc...
-		[X] - Realisic COG and mass similar to a human
-	[-] - Get LSTM to work?
-	[X] - Remove target object as the goal and instead use velocities of the robot and perhaps rotation of the robot?
-
-2nd Phase - Abstract away sensors and actuator control to make it realistic to a robot
-TODO:
-	[ ] - Implement PD controller to go between the ANN and the actuators
-	[ ] - Reduce inputs to be realistic to a real life robot
-
-3rd Phase - make it traverse steps
-TODO:
-	[/] - Step generation algorithm
-		[X] - Single step between origin and target with some randomisation
-		[ ] - More advanced random single steps (calling a seperate script)
-		[ ] - Multiple steps together to form stairs
-		[ ] - Research suitable randomisation parameters
-
-
-###Joint Configuration Due: 27/03/2023
-###	Use 5 different joint configurations to determin the most important joints to walking reliably
-
-
-
-
+* Do not randomise start orientation!
+* Realistic Rigid Body Masses (Hip mass was 0.5) m1 was 38, m2 was 2, m3 was 0.5
+* Rewards for foot force were added back in place of upper leg forward / backward reward
+* Reward for velocity changed to z and x directions
+* Reward for minimising body angular velocity and acceleration added
+* Some reward weights changed, force weight from 0.002 to 0.005, at weight from -1 to -2
+* Added random start orientation back in to hopefully improve symmetry of walking gait
 
 
